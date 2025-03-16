@@ -60,14 +60,14 @@ The entire platform operates under a **DeFi (Decentralized Finance)** model, ens
 
 The core of Unlockhash is powered by smart contracts on **Solana**. These contracts govern the submission and claiming process for hash cracking. They are available in the `contracts/` directory of this repository. The contracts are written for each algorithm:
 
-- **MD5** (md5_contract)
-- **SHA-1** (sha1_contract)
-- **SHA-256** (sha256_contract)
-- **SHA-512** (sha512_contract)
-- **MySQL** (mysql_contract)
-- **NTLM** (ntlm_contract)
+- [MD5](https://github.com/pavloshinakarov/unlockhash/tree/gh-pages/contracts/md5)
+- [SHA-1](https://github.com/pavloshinakarov/unlockhash/tree/gh-pages/contracts/sha1)
+- [SHA-256](https://github.com/pavloshinakarov/unlockhash/tree/gh-pages/contracts/sha256)
+- [SHA-512](https://github.com/pavloshinakarov/unlockhash/tree/gh-pages/contracts/sha512)
+- [MySQL](https://github.com/pavloshinakarov/unlockhash/tree/gh-pages/contracts/mysql)
+- [NTLM](https://github.com/pavloshinakarov/unlockhash/tree/gh-pages/contracts/ntlm)
 
-These contracts are ready for review and audit. You can find the contract files inside the `contracts/` folder.
+These contracts are ready for review and audit.
 
 ## 🏗️ Getting Started
 
@@ -81,7 +81,7 @@ These contracts are ready for review and audit. You can find the contract files 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/pavloshinakarov/unlockhash.git
+   git clone https://github.com/yourusername/unlockhash.git
    ```
 
 2. Navigate to the contracts/ directory:
