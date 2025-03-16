@@ -81,7 +81,7 @@ These contracts are ready for review and audit. You can find the contract files 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/unlockhash.git
+   git clone https://github.com/pavloshinakarov/unlockhash.git
    ```
 
 2. Navigate to the contracts/ directory:
