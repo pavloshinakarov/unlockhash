@@ -45,10 +45,10 @@ A user who has already submitted a hash can choose to increase the reward by sen
 This allows them to make the task more attractive and potentially speed up the cracking process.
 The new reward amount will be updated and visible to all participants.
 
-### Stage 4 (Optional): Reclaim Unsolved Reward
+### Stage 4 (Optional): Refund Unsolved Reward
 
-If a hash remains unsolved for one week after submission, the user who originally posted the hash has the option to reclaim 70% of the total reward offered.
-If the user does not reclaim it, the hash stays active for others to continue attempting to crack it.
+If a hash remains unsolved for one week after submission, the user who originally posted the hash has the option to refund 70% of the total reward offered.
+If the user does not refund it, the hash stays active for others to continue attempting to crack it.
 
 ### Transparency
 
