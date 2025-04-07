@@ -39,6 +39,17 @@ The process is divided into two key stages:
 
 2. **Upon validation**, the reward is released to the person who cracked the hash.
 
+### Stage 3 (Optional): Increase Reward
+
+A user who has already submitted a hash can choose to increase the reward by sending additional SOL.
+This allows them to make the task more attractive and potentially speed up the cracking process.
+The new reward amount will be updated and visible to all participants.
+
+### Stage 4 (Optional): Reclaim Unsolved Reward
+
+If a hash remains unsolved for one week after submission, the user who originally posted the hash has the option to reclaim 70% of the total reward offered.
+If the user does not reclaim it, the hash stays active for others to continue attempting to crack it.
+
 ### Transparency
 
 - All cracked hashes will be publicly listed in the **Claimed Hashes** section.
