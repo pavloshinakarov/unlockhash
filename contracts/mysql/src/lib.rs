@@ -452,10 +452,10 @@ fn refund_amount(
         amount,
     );
 
-    let seed = b"pda_md5";
+    let seed = b"pda_mysql";
     let (pda, bump) = Pubkey::find_program_address(&[seed], &_program_id);
     println!("PDA: {}, Bump: {}", pda, bump);
-    let seeds = &[b"pda_md5".as_ref(), &[bump]];
+    let seeds = &[b"pda_mysql".as_ref(), &[bump]];
 
     invoke_signed(
         &transfer_instruction,
