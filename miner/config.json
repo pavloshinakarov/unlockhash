@@ -1,0 +1,16 @@
+{
+  "author": "f675a6d0-b35c-4cb5-a743-1f7136b6b481",
+  "network": "devnet",
+  "hash_modes": {
+    "MD5": "0",
+    "SHA-1": "100",
+    "SHA-256": "1400",
+    "SHA-512": "1700",
+    "NTLM": "5500",
+    "MYSQL323": "200"
+  },
+  "last_network_dump": 1747417854,
+  "min_complexity": 100000000000,
+  "max_complexity": 1000000000000,
+  "db": "http://localhost:10000"
+}
