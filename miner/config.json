@@ -1,6 +1,24 @@
 {
-  "author": "f675a6d0-b35c-4cb5-a743-1f7136b6b481",
-  "network": "devnet",
+  "author": "",
+  "network": "mainnet",
+  "contracts": {
+    "mainnet": {
+      "MD5": "4uZVMw64SwC9beYZoecYYcDubP66QyzVT1nStXZ2zs8T",
+      "MYSQL323": "0",
+      "NTLM": "0",
+      "SHA-1": "0",
+      "SHA-256": "BHvR6e5rcwuGRE1JMzzRRTignJzCKH5UKS4wpTQZxnEh",
+      "SHA-512": "0"
+    },
+    "devnet": {
+      "MD5": "9jVkvcKTe378tBycwutcxwqCLJWaFopSSo6K3mQsRMtv",
+      "MYSQL323": "3xTqVtDLVx58h5nPaUesf8zcUHHXpyX87j1dfZAktMR7",
+      "NTLM": "4Eyg7QYVQm4JWAvfh3DcsxCntExv4Q3NoX32vovAP7WV",
+      "SHA-1": "GGQN4JqAM3F4sxqDZnUZ1jBTFKX1PB66QsLQZK54rjTS",
+      "SHA-256": "4GRXLiGAcR9mccguE5Jxb4tmFmPMj6W5kjV3fKQ1SVDr",
+      "SHA-512": "55CBW7DhqNV3cGnFxSKGCsrJ8Fj71SisTmaPhd9HzXmK"
+    }
+  },
   "hash_modes": {
     "MD5": "0",
     "SHA-1": "100",
@@ -9,7 +27,7 @@
     "NTLM": "5500",
     "MYSQL323": "200"
   },
-  "last_network_dump": 1747417854,
+  "last_network_dump": 1747437866,
   "min_complexity": 100000000000,
   "max_complexity": 1000000000000,
   "db": "http://localhost:10000"

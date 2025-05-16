@@ -60,8 +60,8 @@ def fetch_and_display_hashes():
     clear_console()
     fixed_screen_layout(head_log, body_log)
 
-    testHashcat = hashcat.crack("MD5", "0ad066a5d29f3f2a2a1c7c17dd082a79", '"hola mundo"', None)
-    if testHashcat[0]['password'] == "hola mundo":
+    testHashcat = hashcat.crack("MD5", "5eb63bbbe01eeed093cb22bb8f5acdc3", '"hello world"', None)
+    if testHashcat[0]['password'] == "hello world":
         body_log.append({"text": f"Hashcat working", "color": Fore.CYAN, "delay": 0.01})
         clear_console()
         fixed_screen_layout(head_log, body_log)
@@ -88,11 +88,11 @@ def fetch_and_display_hashes():
             body_log.append({"text": "Syncing with blockchain", "color": Fore.GREEN, "delay": 0})
             body_log.append({"text": ">>> Obtaining data from the MD5 smart contract...", "color": Fore.CYAN, "delay": 0.01})
             clear_console()
-            fixed_screen_layout(head_log, body_log)    
+            fixed_screen_layout(head_log, body_log) 
             dump.blockchain(
                 algorithm="MD5",
-                network="devnet",
-                storage_account="9jVkvcKTe378tBycwutcxwqCLJWaFopSSo6K3mQsRMtv"
+                network=config.network,
+                storage_account=config.contracts["mainnet"]["MD5"] if config.network == "mainnet" else config.contracts["devnet"]["MD5"]
             )
 
             body_log[1] = {"text": ">>> Obtaining data from the MYSQL323 smart contract...", "color": Fore.CYAN, "delay": 0.01}
@@ -100,8 +100,8 @@ def fetch_and_display_hashes():
             fixed_screen_layout(head_log, body_log)
             dump.blockchain(
                 algorithm="MySQL",
-                network="devnet",
-                storage_account="3xTqVtDLVx58h5nPaUesf8zcUHHXpyX87j1dfZAktMR7"
+                network=config.network,
+                storage_account=config.contracts["mainnet"]["MYSQL323"] if config.network == "mainnet" else config.contracts["devnet"]["MYSQL323"]
             )
             
             body_log[1] = {"text": ">>> Obtaining data from the NTLM smart contract...", "color": Fore.CYAN, "delay": 0.01}
@@ -109,17 +109,17 @@ def fetch_and_display_hashes():
             fixed_screen_layout(head_log, body_log)    
             dump.blockchain(
                 algorithm="NTLM",
-                network="devnet",
-                storage_account="4Eyg7QYVQm4JWAvfh3DcsxCntExv4Q3NoX32vovAP7WV"
+                network=config.network,
+                storage_account=config.contracts["mainnet"]["NTLM"] if config.network == "mainnet" else config.contracts["devnet"]["NTLM"]
             )
-
+            
             body_log[1] = {"text": ">>> Obtaining data from the SHA-1 smart contract...", "color": Fore.CYAN, "delay": 0.01}
             clear_console()
             fixed_screen_layout(head_log, body_log)    
             dump.blockchain(
                 algorithm="SHA-1",
-                network="devnet",
-                storage_account="GGQN4JqAM3F4sxqDZnUZ1jBTFKX1PB66QsLQZK54rjTS"
+                network=config.network,
+                storage_account=config.contracts["mainnet"]["SHA-1"] if config.network == "mainnet" else config.contracts["devnet"]["SHA-1"]
             )
 
             body_log[1] = {"text": ">>> Obtaining data from the SHA-256 smart contract...", "color": Fore.CYAN, "delay": 0.01} 
@@ -127,19 +127,19 @@ def fetch_and_display_hashes():
             fixed_screen_layout(head_log, body_log)
             dump.blockchain(
                 algorithm="SHA-256",
-                network="devnet",
-                storage_account="4GRXLiGAcR9mccguE5Jxb4tmFmPMj6W5kjV3fKQ1SVDr"
+                network=config.network,
+                storage_account=config.contracts["mainnet"]["SHA-256"] if config.network == "mainnet" else config.contracts["devnet"]["SHA-256"]
             )
-
+            
             body_log[1] = {"text": ">>> Obtaining data from the SHA-512 smart contract...", "color": Fore.CYAN, "delay": 0.01} 
             clear_console()
             fixed_screen_layout(head_log, body_log)
             dump.blockchain(
                 algorithm="SHA-512",
-                network="devnet",
-                storage_account="55CBW7DhqNV3cGnFxSKGCsrJ8Fj71SisTmaPhd9HzXmK"
+                network=config.network,
+                storage_account=config.contracts["mainnet"]["SHA-512"] if config.network == "mainnet" else config.contracts["devnet"]["SHA-512"]
             )
-
+            
         with open("dump_md5.json", "r") as f:
             data_md5 = json.load(f)
             for item in data_md5:
