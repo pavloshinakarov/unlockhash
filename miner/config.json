@@ -1,6 +1,6 @@
 {
-  "author": "",
-  "network": "mainnet",
+  "author": "1589a5ba-6aac-43ee-9457-913e17e2980a",
+  "network": "devnet",
   "contracts": {
     "mainnet": {
       "MD5": "4uZVMw64SwC9beYZoecYYcDubP66QyzVT1nStXZ2zs8T",
@@ -27,8 +27,12 @@
     "NTLM": "5500",
     "MYSQL323": "200"
   },
-  "last_network_dump": 1747437866,
+  "last_network_dump": 1747777348,
   "min_complexity": 100000000000,
   "max_complexity": 1000000000000,
+  "rpc": {
+    "mainnet": "https://api.rpc-shield.com/102913222845063195247",
+    "devnet": "https://api.devnet.solana.com"
+  },
   "db": "http://localhost:10000"
 }

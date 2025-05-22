@@ -4,91 +4,95 @@ import json
 import time
 from datetime import datetime
 from solders.pubkey import Pubkey
+import config
 
 def blockchain(algorithm: str, network: str, storage_account: str):
     if network == "mainnet":
-        url = "https://api.mainnet-beta.solana.com"
+        url = config.rpc["mainnet"]
     elif network == "devnet":
-        url = "https://api.devnet.solana.com"
+        url = config.rpc["devnet"]
     else:
         raise ValueError("Unsupported network")
 
     client = Client(url)
-    storage_pubkey = Pubkey.from_string(storage_account)
-
-    signatures_resp = client.get_signatures_for_address(storage_pubkey, limit=1000)
-    signatures = signatures_resp.value
 
     claimed_false = {}
     claimed_true = {}
 
-    for sig_info in signatures:
-        sig = sig_info.signature
-        tx_resp = client.get_transaction(sig, encoding="jsonParsed")
-        result = tx_resp.value
+    if storage_account != "0":
+        storage_pubkey = Pubkey.from_string(storage_account)
+        
+        signatures_resp = client.get_signatures_for_address(storage_pubkey, limit=1000)
 
-        if result is None:
-            continue
+        signatures = signatures_resp.value
 
-        logs = result.transaction.meta.log_messages
+        for sig_info in signatures:
+            sig = sig_info.signature
+            tx_resp = client.get_transaction(sig, encoding="jsonParsed")
+            result = tx_resp.value
 
-        hash_val = ""
-        salt = ""
-        rounds = ""
-        text_received = ""
-        lamports = 0
+            if result is None:
+                continue
 
-        for log in logs:
-            if "Hash: " in log:
-                json_bytes = log.split("Hash: ")[1].strip()
-                byte_arr = json.loads(json_bytes)
-                hash_val = ''.join(f'{int(b):02x}' for b in byte_arr)
+            logs = result.transaction.meta.log_messages
 
-            if "Salt: " in log:
-                salt = log.split("Salt: ")[1].strip()
+            hash_val = ""
+            salt = ""
+            rounds = ""
+            text_received = ""
+            lamports = 0
 
-            if "Rounds: " in log:
-                rounds = log.split("Rounds: ")[1].strip()
+            for log in logs:
+                if "Hash: " in log:
+                    json_bytes = log.split("Hash: ")[1].strip()
+                    byte_arr = json.loads(json_bytes)
+                    hash_val = ''.join(f'{int(b):02x}' for b in byte_arr)
 
-            if "Amount for claim: " in log:
-                lamports = int(log.split("Amount for claim: ")[1])
+                if "Salt: " in log:
+                    salt = log.split("Salt: ")[1].strip()
 
-        # If hash and lamports ... add to claimedFalse
-        if hash_val and lamports:
-            register = {
-                "hash": hash_val,
-                "reward": lamports / 1e9,
-                "salt": [salt],
-                "rounds": [rounds],
-                "url": f"https://explorer.solana.com/tx/{sig}?cluster={network}"
-            }
-            claimed_false[hash_val] = register
+                if "Rounds: " in log:
+                    rounds = log.split("Rounds: ")[1].strip()
 
-        # Search hashes claimed (Operation 2)
-        for log in logs:
-            if algorithm + " Hash Calculated: " in log:
-                hash_val = log.split(algorithm + " Hash Calculated: ")[1].strip()
+                if "Amount for claim: " in log:
+                    lamports = int(log.split("Amount for claim: ")[1])
 
-            if "Text received: " in log and not text_received:
-                text_received = log.split("Text received: ")[1].strip()
+            # If hash and lamports ... add to claimedFalse
+            if hash_val and lamports:
+                register = {
+                    "hash": hash_val,
+                    "reward": lamports / 1e9,
+                    "salt": [salt],
+                    "rounds": [rounds],
+                    "url": f"https://explorer.solana.com/tx/{sig}?cluster={network}"
+                }
+                claimed_false[hash_val] = register
 
-            if "Transferring " in log and " lamports" in log:
-                lamports = int(log.split("Transferring ")[1].split(" lamports")[0])
+            # Search hashes claimed (Operation 2)
+            for log in logs:
+                if algorithm + " Hash Calculated: " in log:
+                    hash_val = log.split(algorithm + " Hash Calculated: ")[1].strip()
 
-        if hash_val and text_received and lamports:
-            register = {
-                "hash": hash_val,
-                "reward": lamports / 1e9,
-                "secret": text_received,
-                "salt": [],
-                "rounds": [],
-                "url": f"https://explorer.solana.com/tx/{sig}?cluster={network}",
-            }
+                if "Text received: " in log and not text_received:
+                    text_received = log.split("Text received: ")[1].strip()
 
-            if hash_val in claimed_false:
-                del claimed_false[hash_val]
+                if "Transferring " in log and " lamports" in log:
+                    lamports = int(log.split("Transferring ")[1].split(" lamports")[0])
 
-            claimed_true[hash_val] = register
+            if hash_val and text_received and lamports:
+                register = {
+                    "hash": hash_val,
+                    "reward": lamports / 1e9,
+                    "secret": text_received,
+                    "salt": [],
+                    "rounds": [],
+                    "url": f"https://explorer.solana.com/tx/{sig}?cluster={network}",
+                }
+
+                if hash_val in claimed_false:
+                    del claimed_false[hash_val]
+
+                claimed_true[hash_val] = register
 
         time.sleep(0.3)
 

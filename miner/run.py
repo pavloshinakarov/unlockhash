@@ -76,16 +76,17 @@ def fetch_and_display_hashes():
 
         clear_console()
         fixed_screen_layout(head_log, body_log)
-        exit()
+        #exit()
 
     #LOOP FROM HERE
     attacks = 0
     while True:
         timestamp = int(time.time())
-        if config.last_network_dump < timestamp - 60*60:
+        if config.last_network_dump < timestamp - (60*60*1):
             config.update_config_key('last_network_dump', timestamp)
             body_log = []
             body_log.append({"text": "Syncing with blockchain", "color": Fore.GREEN, "delay": 0})
+            
             body_log.append({"text": ">>> Obtaining data from the MD5 smart contract...", "color": Fore.CYAN, "delay": 0.01})
             clear_console()
             fixed_screen_layout(head_log, body_log) 
@@ -94,7 +95,7 @@ def fetch_and_display_hashes():
                 network=config.network,
                 storage_account=config.contracts["mainnet"]["MD5"] if config.network == "mainnet" else config.contracts["devnet"]["MD5"]
             )
-
+            
             body_log[1] = {"text": ">>> Obtaining data from the MYSQL323 smart contract...", "color": Fore.CYAN, "delay": 0.01}
             clear_console()
             fixed_screen_layout(head_log, body_log)
@@ -121,7 +122,7 @@ def fetch_and_display_hashes():
                 network=config.network,
                 storage_account=config.contracts["mainnet"]["SHA-1"] if config.network == "mainnet" else config.contracts["devnet"]["SHA-1"]
             )
-
+            
             body_log[1] = {"text": ">>> Obtaining data from the SHA-256 smart contract...", "color": Fore.CYAN, "delay": 0.01} 
             clear_console()
             fixed_screen_layout(head_log, body_log)
@@ -130,7 +131,7 @@ def fetch_and_display_hashes():
                 network=config.network,
                 storage_account=config.contracts["mainnet"]["SHA-256"] if config.network == "mainnet" else config.contracts["devnet"]["SHA-256"]
             )
-            
+            time.sleep(10)
             body_log[1] = {"text": ">>> Obtaining data from the SHA-512 smart contract...", "color": Fore.CYAN, "delay": 0.01} 
             clear_console()
             fixed_screen_layout(head_log, body_log)
