@@ -1,13 +1,13 @@
 {
-  "author": "1589a5ba-6aac-43ee-9457-913e17e2980a",
-  "network": "devnet",
+  "author": "",
+  "network": "mainnet",
   "contracts": {
     "mainnet": {
-      "MD5": "4uZVMw64SwC9beYZoecYYcDubP66QyzVT1nStXZ2zs8T",
+      "MD5": "7xxdiA6htKUYHvw36Xxpp1DRfwithnfnuuQb6zmWaiHA",
       "MYSQL323": "0",
       "NTLM": "0",
       "SHA-1": "0",
-      "SHA-256": "BHvR6e5rcwuGRE1JMzzRRTignJzCKH5UKS4wpTQZxnEh",
+      "SHA-256": "0",
       "SHA-512": "0"
     },
     "devnet": {
@@ -27,7 +27,7 @@
     "NTLM": "5500",
     "MYSQL323": "200"
   },
-  "last_network_dump": 1747777348,
+  "last_network_dump": 0,
   "min_complexity": 100000000000,
   "max_complexity": 1000000000000,
   "rpc": {
