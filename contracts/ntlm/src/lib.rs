@@ -87,7 +87,7 @@ fn add_hash(_program_id: &Pubkey, accounts: &[AccountInfo], data: &[u8]) -> Prog
     msg!("Current balance: {}", current_balance);
 
     let input_amount = current_balance - previous_balance;
-    if input_amount < 100000000 {
+    if input_amount < 1000000 {
         return Err(ProgramError::Custom(4));
     }
     msg!("Amount transferred: {}", input_amount);
